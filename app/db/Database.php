@@ -50,12 +50,13 @@ class Database
             }
 
             $sql .= " WHERE " . implode(' AND ', $condicoes);
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute($params);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } else {
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute($params);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute($params);
-
-        // if()
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

@@ -18,4 +18,8 @@ class ClienteController
     {
         return $this->services->buscarClienteId($id);
     }
+    public function listarClientes()
+    {
+        return $this->services->listarClientes();
+    }
 }

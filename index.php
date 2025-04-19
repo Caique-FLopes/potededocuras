@@ -21,10 +21,10 @@
         //     })
         // });
 
-
-        fetch('http://127.0.0.1/potededocuras/app/routes/cliente.php?id=1')
-            .then(res => res.json())
-            .then(json => console.log(json))
+        //select cliente finalizado
+        // fetch('http://127.0.0.1/potededocuras/app/routes/cliente.php?id=6')
+        //     .then(res => res.json())
+        //     .then(json => console.log(json))
     </script>
 </body>
 

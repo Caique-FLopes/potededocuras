@@ -18,4 +18,9 @@ class ClienteService
     {
         return $this->cliente->buscarId($id);
     }
+
+    public function listarClientes()
+    {
+        return $this->cliente->listar();
+    }
 }
