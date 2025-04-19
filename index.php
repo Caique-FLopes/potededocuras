@@ -25,6 +25,19 @@
         // fetch('http://127.0.0.1/potededocuras/app/routes/cliente.php?id=6')
         //     .then(res => res.json())
         //     .then(json => console.log(json))
+
+        // fetch('http://127.0.0.1/potededocuras/app/routes/produto.php', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         nome: 'Palha Italiana',
+        //         valor: 9.0,
+        //         imagem: 'imagem',
+        //         quantidade: 9,
+        //     })
+        // });
     </script>
 </body>
 
