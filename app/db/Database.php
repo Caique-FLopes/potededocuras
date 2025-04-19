@@ -35,4 +35,27 @@ class Database
         $stmt = $this->connect()->prepare($sql);
         return $stmt->execute($infos);
     }
+
+    public function select(array $regras = null, string $colunas = "*")
+    {
+        $sql = "SELECT {$colunas} FROM {$this->table}";
+        $params = [];
+
+        if (!empty($regras)) {
+            $condicoes = [];
+
+            foreach ($regras as $coluna => $valor) {
+                $condicoes[] = "{$coluna} = :{$coluna}";
+                $params[$coluna] = $valor;
+            }
+
+            $sql .= " WHERE " . implode(' AND ', $condicoes);
+        }
+
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute($params);
+
+        // if()
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

@@ -14,4 +14,8 @@ class ClienteController
     {
         return $this->services->cadastrarCliente($infos);
     }
+    public function buscarClienteId(string $id)
+    {
+        return $this->services->buscarClienteId($id);
+    }
 }

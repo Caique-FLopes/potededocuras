@@ -14,4 +14,9 @@ class Cliente
         $dbConn = new Database($this->table);
         return $dbConn->insert($infos);
     }
+    public function buscarId(string $id)
+    {
+        $dbConn = new Database($this->table);
+        return $dbConn->select(['id' => $id]);
+    }
 }

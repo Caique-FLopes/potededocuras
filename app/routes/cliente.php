@@ -4,14 +4,20 @@ require_once '../controllers/ClienteController.php';
 
 $controller = new ClienteController();
 
+var_dump($controller->buscarClienteId(1));
+
 switch ($_SERVER['REQUEST_METHOD']) {
-    case 'GET':
+    // case 'GET':
+    //     if (isset($_GET['id'])) {
+    //         try {
+    //             json_encode($controller->buscarClienteId($_GET['id']));
+    //         } catch (Exception $e) {
+    //             echo 'Caught exception: ',  $e->getMessage(), "\n";
+    //         }
+    //     }
 
     case 'POST':
-        // Lê o corpo cru da requisição
         $json = file_get_contents('php://input');
-
-        // Decodifica o JSON em array associativo
         $data = json_decode($json, true);
 
         if (isset($data['nome'], $data['tel'])) {

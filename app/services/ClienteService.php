@@ -13,4 +13,9 @@ class ClienteService
     {
         return $this->cliente->insert($infos);
     }
+
+    public function buscarClienteId(string $id)
+    {
+        return $this->cliente->buscarId($id);
+    }
 }
