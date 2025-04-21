@@ -1,23 +1,12 @@
-//import { useState } from 'react'
+import ListaProdutos from "./components/ListaProdutos"
+import SelectUsers from "./components/SelectCliente"
 
 function App() {
-  //const [count, setCount] = useState(0)
-  fetch('')
   return (
     <>
       <main>
-        <section>
-          <a href="">
-            <img src="" alt="" srcset="" />
-          </a>
-        </section>
-        <section>
-          <form >
-            <select name="" id="">
-              
-            </select>
-          </form>
-        </section>
+        <SelectUsers/>
+        <ListaProdutos/>
       </main>
     </>
   )
