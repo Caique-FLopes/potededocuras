@@ -7,7 +7,7 @@ create table cliente(
     tel varchar(15)
 );
 
-create table prouto(
+create table produto(
 	id int auto_increment primary key,
     nome varchar(256),
     valor float,
@@ -24,3 +24,20 @@ create table venda(
     foreign key (id_cliente) references cliente(id),
     foreign key (id_produto) references produto(id)
 );
+
+select * from cliente;
+select * from produto;
+select * from venda;
+
+SELECT 
+    c.nome AS nome_cliente,
+    c.tel AS telefone_cliente,
+    p.nome AS nome_produto,
+    p.valor,
+    v.quantidade,
+    v.data_venda
+FROM venda v
+JOIN cliente c ON v.id_cliente = c.id
+JOIN produto p ON v.id_produto = p.id;
+
+

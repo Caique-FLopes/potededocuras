@@ -25,4 +25,8 @@ class Vendas
     {
         return $this->dbConn->select();
     }
+    public function update($where, $infos)
+    {
+        return $this->dbConn->update($where, $infos);
+    }
 }

@@ -19,8 +19,12 @@ class VendasService
         return $this->vendas->buscarId($id);
     }
 
-    public function listarVendass()
+    public function listarVendas()
     {
         return $this->vendas->listar();
+    }
+    public function atualizarVenda($where, $att)
+    {
+        return $this->vendas->update($where, $att);
     }
 }

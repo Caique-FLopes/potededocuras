@@ -59,4 +59,23 @@ class Database
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
+
+    public function update($where, array $values)
+    {
+        $colunas = array_keys($values);
+        $valores = array_values($values);
+
+        $sql = "UPDATE " . $this->table . " SET " . implode('=?,', $colunas) . '=? WHERE ' . $where;
+
+        $stmt = $this->connect()->prepare($sql);
+        return $stmt->execute($valores);
+    }
+
+    public function delete($where)
+    {
+        $sql = 'DELETE FROM ' . $this->table . ' WHERE ' . $where;
+        $stmt = $this->connect()->prepare($sql)->execute();
+
+        //return $stmt->rowCount() == 1 ? true : false;
+    }
 }
