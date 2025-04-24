@@ -1,5 +1,7 @@
 <?php
-
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 require_once '../controllers/VendasController.php';
 
 $controller = new VendasController();
@@ -26,11 +28,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $json = file_get_contents('php://input');
         $data = json_decode($json, true);
 
-        if (isset($data['id_cliente'], $data['id_produto'], $data['data_venda'], $data['quantidade'])) {
+        if (isset($data['id_cliente'], $data['id_produto'], $data['quantidade'])) {
             $infos = [
                 'id_cliente' => $data['id_cliente'],
                 'id_produto' => $data['id_produto'],
-                'data_venda' => $data['data_venda'],
+                'data_venda' => date("Y-m-d"),
                 'quantidade' => $data['quantidade'],
             ];
 
@@ -44,24 +46,24 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 
     case 'PUT':
-        $json = file_get_contents('php://input');
-        $data = json_decode($json, true);
+        // $json = file_get_contents('php://input');
+        // $data = json_decode($json, true);
 
-        if (isset($data['id_cliente'], $data['id_produto'], $data['data_venda'], $data['quantidade'])) {
-            $infos = [
-                'id_cliente' => $data['id_cliente'],
-                'id_produto' => $data['id_produto'],
-                'data_venda' => $data['data_venda'],
-                'quantidade' => $data['quantidade'],
-            ];
+        // if (isset($data['id_cliente'], $data['id_produto'], $data['quantidade'])) {
+        //     $infos = [
+        //         'id_cliente' => $data['id_cliente'],
+        //         'id_produto' => $data['id_produto'],
+        //         'data_venda' => date('y-m-d'),
+        //         'quantidade' => $data['quantidade'],
+        //     ];
 
-            try {
-                $controller->cadastrarVendas($infos);
-                echo json_encode(['response' => 'sucess']);
-            } catch (Exception $e) {
-                echo 'Caught exception: ',  $e->getMessage(), "\n";
-            }
-        }
+        //     try {
+        //         $controller->cadastrarVendas($infos);
+        //         echo json_encode(['response' => 'sucess']);
+        //     } catch (Exception $e) {
+        //         echo 'Caught exception: ',  $e->getMessage(), "\n";
+        //     }
+        // }
         break;
 
     case 'DELETE':

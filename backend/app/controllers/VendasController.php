@@ -13,15 +13,21 @@ class VendasController
     }
     public function cadastrarVendas(array $infos)
     {
-        if ($this->listarVendas(['id_cliente' => $infos['id_cliente'], 'data_venda' => $infos['data_venda']])) {
+        $regra = [
+            'id_cliente' => $infos['id_cliente'],
+            'id_produto' => $infos['id_produto'],
+            'data_venda' => $infos['data_venda'],
+        ];
 
-            $where = "id_cliente = {$infos['id_cliente']} and data_venda = '{$infos['data_venda']}';";
+        if ($this->services->listarVendas($regra)) {
+            $where = "id_cliente = {$infos['id_cliente']} and data_venda = '{$infos['data_venda']}' and id_produto = {$infos['id_produto']};";
+
             $att = ['quantidade' => $infos['quantidade']];
+
             return $this->services->atualizarVenda($where, $att);
         } else {
             return $this->services->cadastrarVendas($infos);
         }
-        $this->services->cadastrarVendas($infos);
     }
     public function buscarVendasId(string $id)
     {

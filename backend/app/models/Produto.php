@@ -26,4 +26,30 @@ class Produto
     {
         return $this->dbConn->select();
     }
+
+    public function buscarComQuantidadesPorCliente($clienteId)
+    {
+        $hoje = date('Y-m-d');
+        $sql = "
+        SELECT 
+            p.*, 
+            COALESCE(v.total_quantidade, 0) as quantidade
+        FROM produto p
+        LEFT JOIN (
+            SELECT 
+                id_produto, 
+                SUM(quantidade) as total_quantidade
+            FROM venda
+            WHERE id_cliente = :clienteId AND DATE(data_venda) = :hoje
+            GROUP BY id_produto
+        ) v ON p.id = v.id_produto
+    ";
+
+        $stmt = $this->dbConn->connect()->prepare($sql);
+        $stmt->bindParam(':clienteId', $clienteId);
+        $stmt->bindParam(':hoje', $hoje);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

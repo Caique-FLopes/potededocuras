@@ -66,7 +66,6 @@ class Database
         $valores = array_values($values);
 
         $sql = "UPDATE " . $this->table . " SET " . implode('=?,', $colunas) . '=? WHERE ' . $where;
-
         $stmt = $this->connect()->prepare($sql);
         return $stmt->execute($valores);
     }

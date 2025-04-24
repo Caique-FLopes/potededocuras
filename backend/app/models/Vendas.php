@@ -21,9 +21,9 @@ class Vendas
     {
         return $this->dbConn->select(['id' => $id]);
     }
-    public function listar()
+    public function listar($regras = null)
     {
-        return $this->dbConn->select();
+        return $this->dbConn->select($regras);
     }
     public function update($where, $infos)
     {

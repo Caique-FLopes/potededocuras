@@ -23,4 +23,8 @@ class ProdutoController
     {
         return $this->services->listarProdutos();
     }
+    public function listarProdutosPorCliente($clienteId)
+    {
+        return $this->services->listarProdutosPorCliente($clienteId);
+    }
 }

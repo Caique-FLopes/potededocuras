@@ -9,18 +9,16 @@ $controller = new ProdutoController();
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
-        if (isset($_GET['id'])) {
-            try {
+        try {
+            if (isset($_GET['id'])) {
                 echo json_encode($controller->buscarProdutoId($_GET['id']));
-            } catch (Exception $e) {
-                echo 'Caught exception: ',  $e->getMessage(), "\n";
-            }
-        } else {
-            try {
+            } elseif (isset($_GET['cliente_id'])) {
+                echo json_encode($controller->listarProdutosPorCliente($_GET['cliente_id']));
+            } else {
                 echo json_encode($controller->listarProdutos());
-            } catch (Exception $e) {
-                echo 'Caught exception: ',  $e->getMessage(), "\n";
             }
+        } catch (Exception $e) {
+            echo 'Caught exception: ', $e->getMessage(), "\n";
         }
         break;
 

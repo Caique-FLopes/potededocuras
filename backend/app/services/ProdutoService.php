@@ -18,6 +18,10 @@ class ProdutoService
     {
         return $this->produto->buscarId($id);
     }
+    public function listarProdutosPorCliente($clienteId)
+    {
+        return $this->produto->buscarComQuantidadesPorCliente($clienteId);
+    }
 
     public function listarProdutos()
     {
